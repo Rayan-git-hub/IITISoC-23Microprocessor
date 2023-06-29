@@ -14,21 +14,20 @@ module sp(
 
   always @(posedge clk or posedge reset) begin
     if (reset) begin
-      sp <= 16'h0000; // Reset stack pointer to 0000H
+      sp <= 16'h0000;
     end else if (enable) begin
       if (decrement) begin
         if (sp > 16'h0000) begin
-          sp <= sp - 1; // Decrement stack pointer
+          sp <= sp - 1;
           stack[sp] <= data_in;
         end
       end else if (increment) begin
         if (sp < 16'hFFFF) begin
-          sp <= sp + 1; // Increment stack pointer
+          sp <= sp + 1;
           data_out <= stack[sp];
-        end
-      end
-    end
   end
-
-  assign sp_out = sp;
+  end
+  end
+  end
+  assign sp_out=sp;
 endmodule
