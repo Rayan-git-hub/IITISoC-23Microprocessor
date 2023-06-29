@@ -25,6 +25,7 @@ module sp(
         if (sp < 16'hFFFF) begin
           sp <= sp + 1;
           data_out <= stack[sp];
+          stack[sp] <= 0;
   end
   end
   end
