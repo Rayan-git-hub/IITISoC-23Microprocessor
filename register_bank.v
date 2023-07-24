@@ -1,17 +1,26 @@
-module register_bank(output reg [7:0]op,
-                    input [1:0]r_add,
-                    input [1:0]w_add,
+  `timescale 1ns / 1ps
+ module register_bank(output reg [7:0]op1,
+ output reg [7:0]op2,
+                    input [1:0]add1i,
+                    input [1:0]add2i,
                     input rw,
-                    input [7:0]ip,
+                    input [7:0]ip1,
+                    input [7:0]ip2,
+                    input [1:0]add1o,
+                    input [1:0]add2o,
                     input clk);
 
 reg [7:0]registers[3:0];
-always @(negedge clk)begin
-    if(!rw)begin
-        registers[w_add]=ip;
+  always @(*)
+    if(rw==0)
+    begin
+        registers[add1i]<=ip1;
+        registers[add2i]<=ip2;
+        end
+    
+    else
+    begin
+        op1 <= registers[add1o];
+        op2 <= registers[add2o];
     end
-    else begin
-        op = registers[r_add];
-    end
-end
 endmodule
