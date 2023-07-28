@@ -1,7 +1,6 @@
 module PC(
   input wire clk,        
   input wire reset,     
-
   input wire increment, 
 
   output reg [15:0] pc  
